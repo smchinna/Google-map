@@ -6,18 +6,34 @@ import { Layout, MyLocation, Header } from 'components/Layout/style';
 import * as constants from './constants';
 import { connect } from 'react-redux';
 import { getNameSelectors } from 'services/friend/selectors';
+import { initialFetchAction } from 'services/friend/actions'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPos: { lat: 12.00, lng: 22.12 }
+           
         };
+    }
+
+    onChange = e => {
+        console.log(e.target);
+        this.setState({
+            value: e.target.value
+        });
     }
     
     render() {
-        const { currentPos } = this.state;
-        console.log(this.props);
+        const { friendList } = this.props;
+        console.log(friendList)
+        const showDetails = friendList.map((data, index) => {
+          return (
+              <MyLocation key={index}>
+                <FriendsMap google={this.props.google} data={data}/>                
+              </MyLocation>
+            );
+        });
+
         return (
             <div>
                 <Layout>
@@ -27,11 +43,9 @@ class App extends React.Component {
                     <MyLocation>
                         <MyMap google={this.props.google} />
                     </MyLocation>
-                    <MyLocation>
-                        <div className="columns is-mobile is-desktop is-tablet">
-                        </div>
-                        <FriendsMap google={this.props.google} currentPos={currentPos} place="London"/>
-                    </MyLocation>
+                    {
+                      showDetails
+                    }
                 </Layout>
             </div>
         );
@@ -44,6 +58,12 @@ function mapStateToProps(state) {
    }
 }
 
-export default connect(mapStateToProps, null)(GoogleApiWrapper({
+function mapDispatchToProps(dispatch) {
+    return {
+        initialUploadAction: (data) => dispatch(initialFetchAction(data))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({
     apiKey: 'AIzaSyChZPizXo_3sk70Cm4yveOd0YfQtuxc7As',
   })(App));

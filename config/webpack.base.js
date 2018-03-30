@@ -49,7 +49,7 @@ function loadConfig() {
     const configPath = path.resolve(__dirname, 'app');
     const configTarget = process.env.VEEVRA_CONFIG || process.env.NODE_ENV;
 
-    let config = null
+    var config = null
     switch (configTarget) {
         case 'production':
             console.log("Using production configuration file for application.");

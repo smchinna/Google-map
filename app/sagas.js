@@ -1,4 +1,3 @@
-
 import friendSagas from 'services/friend/sagas';
 
 const sagas = [

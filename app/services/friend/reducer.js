@@ -1,7 +1,11 @@
-export function reducer(state = {}, action ) {
+import * as constants from './constants';
+
+
+export function reducer(state = [], action ) {
+	
     switch(action.type) {
-        case 'INITIAL':
-            return action;
+        case constants.INITIAL_FRIEND_LIST:
+            return action.data;
 
         default:
             return state;

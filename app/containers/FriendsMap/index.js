@@ -15,24 +15,29 @@ export default class FriendsMap extends Component {
   }
 
   loadMap() {
-    const { google, currentPos, place } = this.props;
+    const { google, data } = this.props;
     if (google) {
       const maps = google.maps;
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
       if (navigator.geolocation) {
         let geocoder = new google.maps.Geocoder;
-        const mapConfig = Object.assign({}, {
-          center: currentPos,
+        let position = {};
+        geocoder.geocode({'address': data.address}, (results, status) => {
+          position.lat = results[0].geometry.location.lat();
+          position.lng = results[0].geometry.location.lng();
+          const mapConfig = Object.assign({}, {
+          center: position,
           zoom: 2,
           mapTypeId: 'roadmap'
         });
         this.map = new maps.Map(node, mapConfig);
         const marker = new google.maps.Marker({
-          position: currentPos,
+          position: position,
           map: this.map,
-          title: place
+          title: data.address
         });
+        })
       }
     }
   }
