@@ -23,6 +23,7 @@ const Header = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 `; 
 
 export { Layout, MyLocation, Header };

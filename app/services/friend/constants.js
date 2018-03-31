@@ -1,5 +1,5 @@
 export const INITIAL_FRIEND_LIST = "INITIAL_FRIEND_LIST";
-export const FETCH_ACTION = "FETCH_ACTION";
+export const ADD_FETCH_ACTION = "ADD_FETCH_ACTION";
 
 export const listArray = [ 
 	{
@@ -8,7 +8,7 @@ export const listArray = [
 		job: 'Game developer'  
 	},
 	{
-		address: 'kolkatta,india',
+		address: 'newyork',
 		name: 'Sanjay',
 		job: 'software developer'
 	}

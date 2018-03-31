@@ -5,7 +5,7 @@ import * as constants from './constants';
 export function* initialFetchSagas(action) {
    yield put({
         type: constants.INITIAL_FRIEND_LIST,
-        data: 'chinn'
+        data: 'chinna'
     }); 
 };
 
@@ -14,7 +14,7 @@ export function* watchFriendsList() {
 		type: constants.INITIAL_FRIEND_LIST,
         data: constants.listArray
 	});
-    yield takeLatest(constants.FETCH_ACTION, initialFetchSagas);
+    yield takeLatest(constants.ADD_FETCH_ACTION, initialFetchSagas);
 };
 
 export default function*() {

@@ -6,7 +6,6 @@ import { Layout, MyLocation, Header } from 'components/Layout/style';
 import * as constants from './constants';
 import { connect } from 'react-redux';
 import { getNameSelectors } from 'services/friend/selectors';
-import { initialFetchAction } from 'services/friend/actions'
 
 class App extends React.Component {
     constructor(props) {
@@ -17,7 +16,6 @@ class App extends React.Component {
     }
 
     onChange = e => {
-        console.log(e.target);
         this.setState({
             value: e.target.value
         });
@@ -25,7 +23,6 @@ class App extends React.Component {
     
     render() {
         const { friendList } = this.props;
-        console.log(friendList)
         const showDetails = friendList.map((data, index) => {
           return (
               <MyLocation key={index}>
@@ -64,6 +61,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({
+export default connect(mapStateToProps, null)(GoogleApiWrapper({
     apiKey: 'AIzaSyChZPizXo_3sk70Cm4yveOd0YfQtuxc7As',
   })(App));
